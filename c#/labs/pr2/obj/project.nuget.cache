@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "uXce9/TDJ5Jl0DVwjDhn97/cm9Tqumg9APLvYXliOJMYYZ0rzWXsWu4IsaqIfWCQIe0CSyR8UnIrklFH2iYDlg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\burov\\Dropbox\\program\\C\\c#\\labs\\pr2\\pr2.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\burov\\.nuget\\packages\\newtonsoft.json\\12.0.2\\newtonsoft.json.12.0.2.nupkg.sha512"
+  ],
+  "logs": []
+}
