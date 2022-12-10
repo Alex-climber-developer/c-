@@ -1,185 +1,92 @@
-// Vариант 8. Кошки.
-// Класс для первой части – шотландская вислоухая.
+// вопросы:
+//       1. Какое максимальное поколение объектов в ходе выполнения
+//      программы было выявлено? ----2
+//       Сколько их в C# всего? -----3(2st - last)
+//       2. Что будет, если закомментировать строчку GC.Collect(0);
+//        Изменится ли вывод программы, если да, то как и почему?
+// изменится  - ранее мы очищали сначала до 0вкл и после при надобности до 2го 
+//              сейчас вывода 3 а очистка идет одна (а значит 2 вывода первых будут одинаковы)
 
-// Варианты свойств: 
-//    -вес, -пол, -возраст, -имя.
-
-// Варианты методов: 
-//    -поиграть, -покормить, погладить, получить 
-//    осуждающий взгляд от кошки (статический).
-
-// Возможные классы иерархии: 
-//     кошки (базовый), мейн кун, 
-//      персидская, сфинкс (хотя это такая себе кошка).
-
-// Возможный интерфейс:
-//    IHasFourLeg,
-// дополнительный класс –
-//    капибара.
-
-using Internal;
+//       3. Что будет, если закомментировать строчку GC.Collect(2);
+//        Изменится ли вывод программы, если да, то как и почему?
+//              да   теперь мы очищаем один раз до 0 поколения 
+//       4. Измените параметр метода GC.GetTotalMemory() с true на false.
+//       На что это влияет?
+//              true = перед возвратом этот метод может дождаться выполнения сборки мусора; 
+//       5. В методе MakeSomeGarbage() добавьте к объекту vt создание еще 
+//       одного любого объекта, например класса StringBuilder. Что изменилось в выводе программы?
+using System.IO;
 using System;
-
-class Program
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+namespace GarbageCollectorInCSharp
 {
-    static void Main(string[] args)
+    class GCProgram
     {
-        Cat cat1 = new Cat(100, 'm', 11, "catcat");
-        cat1.Play();
-    }
-}
-
-class Cat
-{
-    public int Years; public char Gender;
-    public string Name; public float Weight;
-    private int hungry_level = 0, mood = 0, playful_level = 0;
-    private bool isLife = 1;
-    public Cat(float weight, char gender, int years, string name)
-    {
-        if (weight <= 0 || years <= 0) throw new Exception("ERROR value!");
-        else
+        private const long maxGarbage = 1000;
+        static void Main()
         {
-            Years = years;
-            Weight = weight;
+            GCProgram myGCCol = new GCProgram();
+            Console.WriteLine("The highest generation is {0}", GC.MaxGeneration);
+            myGCCol.MakeSomeGarbage();
+            Console.WriteLine("Generation: {0}", GC.GetGeneration(myGCCol));
+            Console.WriteLine("Total Memory: {0}", GC.GetTotalMemory(true));
+            GC.Collect(0);
+            Console.WriteLine("Generation: {0}", GC.GetGeneration(myGCCol));
+            Console.WriteLine("Total Memory: {0}", GC.GetTotalMemory(true));
+            GC.Collect(2);
+            Console.WriteLine("Generation: {0}", GC.GetGeneration(myGCCol));
+            Console.WriteLine("Total Memory: {0}", GC.GetTotalMemory(true));
+            Console.Read();
         }
-
-        Gender = gender;
-        Name = name;
-        Timer timer1 = new Timer
+        void MakeSomeGarbage()
         {
-            Interval = 2000
-        };
-        timer1.Enabled = true;
-        timer1.Tick += new System.EventHandler(OnTimerEvent);
-    }
-    public void Play()
-    {
-        int x = 50, max = 100, min = 0, flag = 1, your_temps = 0, my_temps = 1;
-        string output = "";
-
-        Console.WriteLine("Мяу\n" +
-        "We will play a little Game\n" +
-        "I'll predict how old are you and vice versa\n" +
-        "RULES:\n" +
-        "the guesser calls the number\n" +
-        "the second answers 'more' or 'less' or 'good'\n" +
-        "who will guess for the least number of hints - won" +
-        $"remember your num ({min} < num < {max})\n\n" +
-        "so, start the Game\n");
-        while (output.ToLower() != "good")
-        {
-            Console.WriteLine($"Are you {x} years?");
-            output = Console.Readline();
-            if (output.ToLower() == "more")
+            Version vt;
+            for (int i = 0; i < maxGarbage; i++)
             {
-                if (x == 99)
-                {
-                    Console.WriteLine("Мяу\n you very old for this!\n");
-                    flag = 0;
-                    break;
-                }
-                else
-                {
-                    my_temps++;
-                    int tmp = x;
-                    x = (x + max) / 2;
-                    min = tmp;
-                }
+                vt = new Version();
             }
-            else if (output.ToLower() == "less")
-            {
-                if (x == 1)
-                {
-                    Console.WriteLine("Мяу\n you baby!\n");
-                    flag = 0;
-                }
-                else
-                {
-                    my_temps++;
-                    int tmp = x;
-                    x = (x + min) / 2;
-                    max = tmp;
-                }
-            }
-            else
-            {
-                Console.WriteLine("Мяу\n Error value!\n");
-                flag = 0;
-            }
+            StringBuilder st = new StringBuilder();
         }
-
-        if (flag)
-        {
-            x = 0;
-            Console.WriteLine($"Your age is {x} years\n\n My resut = {my_temps} temps");
-            Console.WriteLine("Мяу okay\n let's start !\n");
-
-            while (Years != x)
-            {
-                Console.Write("My age is:  ");
-                x = (int)Console.Readline();
-                your_temps++;
-                if (Years < x)
-                    Console.WriteLine("less");
-                else if (Years > x)
-                    Console.WriteLine("more");
-            }
-            Console.WriteLine($"My age is {x} years\n\n Your resut = {your_temps} temps");
-            Console.WriteLine($"FINISH resut = \n\tYour: {your_temps}, My : {my_temps} temps");
-            if (your_temps < my_temps) playful_level -= 500;
-            else
-            {
-                playful_level -= 700;
-            }
-            if (Years > 18) Weight -= 0.2;
-            else Weight -= 0.1;
-        }
-    }
-
-    static private void Broke_view()
-    {
-        Console.WriteLine("!-__-!");
-    }
-
-    public void Stroke()
-    {
-        Console.WriteLine("mmmmmmmrrrrr");
-        mood += (mood / Math.Abs(mood));
-    }
-
-    public void Feed()
-    {
-        Console.WriteLine("thank you it was delicious !");
-        hungry_level -= 150;
-        if (Gender == 'm') Weight += 0.1;
-        else Weight += 0.2;
-    }
-    private void Bioritms()
-    {
-        if (Gender == 'm') hungry_level += 2;
-        else hungry_level++;
-        if (Years < 5) playful_level += 2;
-        else playful_level++;
-
-        if ((hungry_level + playful_level) > 0 &&
-            (hungry_level + playful_level) % 120 == 0) mood--;    // каждые 60сек если голодный и не игранный --mood
-        else if ((hungry_level + playful_level) < 0 &&
-            (hungry_level + playful_level) % 60 == 0) mood++;     // каждые 30сек если не голоден и игран то ++mood
-
-        if (Gender == 'm') Weight -= 0.002;
-        else Weight -= 0.001;   // при весе в кило в среднем (м или ж) кошак через 20 минут без кормежки умрет
-
-        if (mood < 0) Weight += mood * 0.005;
-        if (Weight < 0.1) isLife = 0;
-
-    }
-    private void OnTimerEvent(object sender, EventArgs e)
-    {
-        Bioritms();
     }
 }
 
 
 
+// Вариант 8
+// Отсортировать слова в файлах по количеству букв.
+// Изменить порядок слов в файле на обратный.
 
+// Написать класс-для работы с данной библиотекой: 
+// при создании объекта класса, он открывает файл по переданному конструктору в качестве параметра пути и хранит дескриптор файла всё 
+// время жизни объекта.
+// Созданный класс должен содержать
+//  конструктор, принимающий 
+// два параметра: путь к файлу и режим открытия файла.
+// Созданный класс должен закрывать связанный файл при вызове 
+// метода Dispose, либо финализации. Созданный класс не должен 
+// предусматривать повторное открытие файла.
+// Предусмотреть обработку всех возможных исключений при работе с файлом.
+// В качестве тестовых файлов преподаватель выдаст заранее подготовленные файлы, содержащие набор отдельных слов, с возможными повторения.
+// Написать программу для тестирования созданного класса, которая должна выполнять указанные в варианте операции.Программа 
+// должна содержать меню, со следующими функциями: открыть файлы,
+// получить количество слов в файлах, а также указанные в варианте 
+// действия над файлами.
+// Если не сказано иного, то изменяться должны те же файлы, что и 
+// были предоставлены.
+// Использовать иные методы работы с файлом кроме библиотеки 
+// запрещено!
+// using stream.FileStream;
+
+// [DllImport("file64.dll")]
+// public static extern IntPtr open(string path, bool read);
+// [DllImport("file64.dll")]
+// public static extern void close(IntPtr file);
+// [DllImport("file64.dll")]
+// public static extern bool read(IntPtr file, int num, StringBuilder word);
+// [DllImport("file64.dll")]
+// public static extern void write(IntPtr file, string text);
+// [DllImport("file64.dll")]
+// public static extern int length(IntPtr file);
