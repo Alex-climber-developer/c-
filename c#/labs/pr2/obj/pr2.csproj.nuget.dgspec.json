@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\burov\\Dropbox\\program\\C\\c#\\labs\\pr2\\pr2.csproj": {}
+    "C:\\Users\\burov\\c-sharp\\c#\\labs\\pr2\\pr2.csproj": {}
   },
   "projects": {
-    "C:\\Users\\burov\\Dropbox\\program\\C\\c#\\labs\\pr2\\pr2.csproj": {
+    "C:\\Users\\burov\\c-sharp\\c#\\labs\\pr2\\pr2.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\burov\\Dropbox\\program\\C\\c#\\labs\\pr2\\pr2.csproj",
+        "projectUniqueName": "C:\\Users\\burov\\c-sharp\\c#\\labs\\pr2\\pr2.csproj",
         "projectName": "pr2",
-        "projectPath": "C:\\Users\\burov\\Dropbox\\program\\C\\c#\\labs\\pr2\\pr2.csproj",
+        "projectPath": "C:\\Users\\burov\\c-sharp\\c#\\labs\\pr2\\pr2.csproj",
         "packagesPath": "C:\\Users\\burov\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\burov\\Dropbox\\program\\C\\c#\\labs\\pr2\\obj\\",
+        "outputPath": "C:\\Users\\burov\\c-sharp\\c#\\labs\\pr2\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\burov\\AppData\\Roaming\\NuGet\\NuGet.Config"

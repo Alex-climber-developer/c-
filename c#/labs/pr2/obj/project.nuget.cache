@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "uXce9/TDJ5Jl0DVwjDhn97/cm9Tqumg9APLvYXliOJMYYZ0rzWXsWu4IsaqIfWCQIe0CSyR8UnIrklFH2iYDlg==",
+  "dgSpecHash": "ygpt/VH59SvXydQrrXj64FrLeuTeEtC3T4Wqh2ejPlh4iq3n97O5bbMEP7a0hjGUismy6kWRCIgrqyMWFNNevA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\burov\\Dropbox\\program\\C\\c#\\labs\\pr2\\pr2.csproj",
+  "projectFilePath": "C:\\Users\\burov\\c-sharp\\c#\\labs\\pr2\\pr2.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\burov\\.nuget\\packages\\newtonsoft.json\\12.0.2\\newtonsoft.json.12.0.2.nupkg.sha512"
   ],

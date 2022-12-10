@@ -70,7 +70,7 @@ public struct Data
     public int charge { get; set; }
     public string ToFormat()
     {
-        return string.Format("elementName: {0}\nelementChar: {1}\ngravity: {2}\nelementNumb: {3}\n", this.name, this.symbol, this.gravity, this.charge);
+        return string.Format("|{0,-15}|{1,-15}|{2,-15}|{3,-15}|", this.name, this.symbol, this.gravity, this.charge);
     }
 };
 
@@ -306,10 +306,15 @@ class Program
         switch (option)
         {
             case "1":
-                foreach (var elem in list)
-                    Console.WriteLine(elem.ToFormat());
                 if (list.First == null)
                     Console.WriteLine("List is Empty");
+                else
+                {
+                    Console.WriteLine(string.Format("|{0,-15}|{1,-15}|{2,-15}|{3,-15}|", "elementName", "elementChar", "elementNumb", "gravity"));
+                    Console.WriteLine("+---------------------------------------------------------------+");
+                    foreach (var elem in list)
+                        Console.WriteLine(elem.ToFormat());
+                }
                 break;
             case "2":
                 Console.Write("PRINT. Enter index: ");
@@ -319,6 +324,8 @@ class Program
                 if (index > list.Count - 1) Console.WriteLine("ERROR INDEX");
                 else
                 {
+                    Console.WriteLine(string.Format("|{0,-15}|{1,-15}|{2,-15}|{3,-15}|", "elementName", "elementChar", "elementNumb", "gravity"));
+                    Console.WriteLine("+---------------------------------------------------------------+");
                     foreach (var elem in list)
                     {
                         if (count++ == index)
