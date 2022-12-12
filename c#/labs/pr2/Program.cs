@@ -310,7 +310,7 @@ class Program
                     Console.WriteLine("List is Empty");
                 else
                 {
-                    Console.WriteLine(string.Format("|{0,-15}|{1,-15}|{2,-15}|{3,-15}|", "elementName", "elementChar", "elementNumb", "gravity"));
+                    Console.WriteLine(string.Format("|{0,-15}|{1,-15}|{2,-15}|{3,-15}|", "elementName", "elementChar", "gravity", "elementNumb"));
                     Console.WriteLine("+---------------------------------------------------------------+");
                     foreach (var elem in list)
                         Console.WriteLine(elem.ToFormat());
@@ -324,7 +324,7 @@ class Program
                 if (index > list.Count - 1) Console.WriteLine("ERROR INDEX");
                 else
                 {
-                    Console.WriteLine(string.Format("|{0,-15}|{1,-15}|{2,-15}|{3,-15}|", "elementName", "elementChar", "elementNumb", "gravity"));
+                    Console.WriteLine(string.Format("|{0,-15}|{1,-15}|{2,-15}|{3,-15}|", "elementName", "elementChar", "gravity", "elementNumb"));
                     Console.WriteLine("+---------------------------------------------------------------+");
                     foreach (var elem in list)
                     {

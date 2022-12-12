@@ -60,8 +60,6 @@ using System.Text;
 //     }
 // }
 
-
-
 // Вариант 8
 // Отсортировать слова в файлах по количеству букв.
 // Изменить порядок слов в файле на обратный.
@@ -85,7 +83,7 @@ using System.Text;
 // были предоставлены.
 // Использовать иные методы работы с файлом кроме библиотеки 
 // запрещено!
-// using stream.FileStream;
+
 using System;
 using System.Runtime.InteropServices;
 public class Program
