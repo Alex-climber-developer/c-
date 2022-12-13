@@ -1,6 +1,5 @@
-using System.Runtime.InteropServices;
-using System.IO.Enumeration;
-using System.Text;
+
+using System.Collections.Generic;
 //       1. Какое максимальное поколение объектов в ходе выполнения
 //              программы было выявлено? ----2
 //              Сколько их в C# всего? -----3(2st - last)
@@ -14,7 +13,7 @@ using System.Text;
 //        Изменится ли вывод программы, если да, то как и почему?
 //              да   теперь мы очищаем один раз до 0 поколения 
 
-//       4. Измените параметр метода GC.GetTotalMemory() с true на false.
+//       4. Измените параметр метода GC.GetTotalMemошщшидргмггшщ\ътшргзгшшшгшгигшэшшоory() с true на false.
 //       На что это влияет?
 //              true = перед возвратом этот метод может дождаться выполнения сборки мусора; 
 
@@ -83,9 +82,8 @@ using System.Text;
 // были предоставлены.
 // Использовать иные методы работы с файлом кроме библиотеки 
 // запрещено!
-
-using System;
 using System.Runtime.InteropServices;
+using System.Text;
 public class Program
 {
     [DllImport("file64.dll")]
@@ -201,12 +199,20 @@ public class Program
         // }
         public void sort()
         {
-            int num = 1;
+            int num = 1, index = 0;
             StringBuilder word = new StringBuilder();
             listWords = new List<StringBuilder>();
             while (read(fp, num++, word))
             {
-                listWords.Add(word);
+                if ((index = word.ToString().IndexOf("\n")) != -1)
+                {
+                    String[] word_for_split = word.ToString().Split("\n");
+                    StringBuilder word_before = new StringBuilder(word_for_split[0]);
+                    StringBuilder word_after = new StringBuilder(word_for_split[1]);
+                    listWords.Add(word_before); listWords.Add(word_after);
+                }
+                else
+                    listWords.Add(word);
                 word = new StringBuilder();
             }
             // foreach (var el in listWords) Console.WriteLine($"{el}");
@@ -229,6 +235,7 @@ public class Program
                     Console.WriteLine("ERROR option");
                     break;
             }
+
             List<StringBuilder> new_list = new List<StringBuilder>(sorted_list);
             listWords.Clear();
             listWords = new_list;
@@ -254,7 +261,13 @@ public class Program
             if (fp == null) Console.WriteLine("Error open file");
             else
             {
-                string new_data = String.Join(" ", listWords);
+                string new_data = " ";
+                // string new_data = String.Join(" ", listWords);
+                for (int i = 0; i < listWords.Count; i++)
+                {
+                    if ((i + 1) % 5 != 0) new_data += listWords[i] + " ";
+                    else new_data += listWords[i] + "\n";
+                }
                 write(fp, new_data);
             }
         }

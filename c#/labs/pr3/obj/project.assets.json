@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\burov\\c-sharp\\c#\\labs\\pr-3\\pr-3.csproj",
+      "projectUniqueName": "C:\\Users\\burov\\c-sharp\\c#\\labs\\pr3\\pr-3.csproj",
       "projectName": "pr-3",
-      "projectPath": "C:\\Users\\burov\\c-sharp\\c#\\labs\\pr-3\\pr-3.csproj",
+      "projectPath": "C:\\Users\\burov\\c-sharp\\c#\\labs\\pr3\\pr-3.csproj",
       "packagesPath": "C:\\Users\\burov\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\burov\\c-sharp\\c#\\labs\\pr-3\\obj\\",
+      "outputPath": "C:\\Users\\burov\\c-sharp\\c#\\labs\\pr3\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\burov\\AppData\\Roaming\\NuGet\\NuGet.Config"
