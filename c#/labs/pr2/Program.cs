@@ -113,6 +113,7 @@ class Program
         Console.WriteLine("[4] correct element");
         Console.WriteLine("[5] work with collection");
         Console.WriteLine("[6] sort the collection");
+        Console.WriteLine("[7] secret options");
         Console.Write("\r\nSelect an option: ");
         switch (Console.ReadLine())
         {
@@ -137,6 +138,10 @@ class Program
 
             case "6":
                 sort(ref list);
+                break;
+
+            case "7":
+                secret(list);
                 break;
 
             case "0":
@@ -336,6 +341,40 @@ class Program
                         cur = cur.Next;
                     }
                 }
+                break;
+            default:
+                Console.WriteLine("Error...");
+                break;
+        }
+    }
+    public static void secret(LinkedList<Data> list)
+    {
+        Console.WriteLine("[1] get elem with char");
+        Console.WriteLine("[2] get max weight elem");
+        Console.Write("\r\nSelect an option: ");
+        var option = Console.ReadLine();
+        Console.Clear();
+        switch (option)
+        {
+            case "1":
+                Console.WriteLine("Enter char sym");
+                var sym = Console.ReadLine();
+                foreach (var elem in list)
+                {
+                    if (elem.symbol == sym)
+                    {
+                        Console.WriteLine(elem.ToFormat()); break;
+                    }
+                }
+                break;
+            case "2":
+                float max_grav = -1;
+                foreach (var elem in list)
+                {
+                    if (elem.gravity > max_grav)
+                        max_grav = elem.gravity;
+                }
+                Console.WriteLine($"MAX gravity(mass) = {max_grav}");
                 break;
             default:
                 Console.WriteLine("Error...");
